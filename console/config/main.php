@@ -30,18 +30,7 @@ return [
                 ],
             ],
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.mail.ru',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
-                'username' => 'specialist001@inbox.ru',
-                'password' => '@Spec001',
-                'port' => '465', // Port 25 is a very common port too
-                'encryption' => 'ssl',
-            ],
-        ],
+        
     ],
     'params' => $params,
 ];
