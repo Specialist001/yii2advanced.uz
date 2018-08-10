@@ -30,7 +30,7 @@ return [
                 ],
             ],
         ],
-        
+
     ],
     'params' => $params,
 ];
