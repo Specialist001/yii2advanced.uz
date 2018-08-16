@@ -14,19 +14,13 @@ class NewsletterController extends Controller
 
         if (Yii::$app->request->isPost) {
             $model->email = $formData['email'];
-            echo '<pre>';
-            print_r($model);
-            echo '<pre>';
-
-            var_dump($model->validate());
-            $error = $model->getErrors();
-
-            echo '<pre>';
-            print_r($error);
-            echo '<pre>';
-            die;
+            if ($model->validate() && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Subscribe completed!!!');
+            }
         }
 
-        return $this->render('subscribe');
+        return $this->render('subscribe', [
+            'model' => $model,
+        ]);
     }
 }

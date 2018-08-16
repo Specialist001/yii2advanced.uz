@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use Yii;
 use yii\web\Controller;
 use frontend\models\Employee;
 
@@ -41,5 +42,26 @@ class EmployeeController extends Controller
         $animal1->walk();
         echo '<br>';
         $human1->walk();
+    }
+
+    public function actionRegister()
+    {
+        $model = new Employee();
+        $model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
+
+        $formData = Yii::$app->request->post();
+
+        if (Yii::$app->request->IsPost) {
+            echo '<pre>';
+            print_r($model);
+            echo '<pre>';
+        }
+        
+        return $this->render('register');
+    }
+
+    public function actionUpdate()
+    {
+        return $this->render('update');
     }
 }

@@ -2,6 +2,7 @@
 namespace frontend\models;
 
 use yii\base\Model;
+use Yii;
 
 class Subscribe extends Model
 {
@@ -13,5 +14,12 @@ class Subscribe extends Model
             [['email'], 'required'],
             [['email'], 'email'],
         ];
+    }
+
+    public function save()
+    {
+        $sql = "INSERT INTO subscriber (id, email) VALUES (null, '{$this->email}')";
+
+        return Yii::$app->db->createCommand($sql)->execute();
     }
 }
