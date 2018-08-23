@@ -25,10 +25,16 @@ class Employee extends Model
     public function rules()
     {
         return [
-            [['firstName', 'lastName', 'middleName'], 'required'],
+            [['firstName', 'lastName', 'email'], 'required'],
             [['firstName'], 'string', 'min' => 2],
             [['lastName'], 'string', 'min' => 3],
             [['email'], 'email'],
+            [['middleName'], 'required', 'on' => self::SCENARIO_EMPLOYEE_UPDATE],
         ];
+    }
+
+    public function save()
+    {
+        return true;
     }
 }

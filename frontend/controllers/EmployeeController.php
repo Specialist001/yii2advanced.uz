@@ -52,16 +52,36 @@ class EmployeeController extends Controller
         $formData = Yii::$app->request->post();
 
         if (Yii::$app->request->IsPost) {
-            echo '<pre>';
-            print_r($model);
-            echo '<pre>';
+            $model->attributes = $formData;
+
+            if ($model->validate() && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Registered!');
+            }
         }
-        
-        return $this->render('register');
+
+        return $this->render('register',[
+            'model' => $model,
+        ]);
     }
 
     public function actionUpdate()
     {
-        return $this->render('update');
+        $model = new Employee();
+        $model->scenario = Employee::SCENARIO_EMPLOYEE_UPDATE;
+
+        $formData = Yii::$app->request->post();
+
+        if (Yii::$app->request->IsPost) {
+            $model->attributes = $formData;
+
+            if ($model->validate() && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Registered!');
+            }
+        }
+
+        return $this->render('update',[
+            'model' => $model,
+        ]);
+
     }
 }
