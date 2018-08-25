@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 24 2018 г., 17:32
+-- Время создания: Авг 25 2018 г., 17:42
 -- Версия сервера: 5.6.37-log
 -- Версия PHP: 7.1.7
 
@@ -21,6 +21,34 @@ SET time_zone = "+00:00";
 --
 -- База данных: `yii2advanced_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `employee`
+--
+
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `middle_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `birthdate` timestamp NULL DEFAULT NULL,
+  `city` varchar(20) NOT NULL,
+  `hiring_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `position` int(11) NOT NULL,
+  `department` int(11) NOT NULL,
+  `id_code` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL DEFAULT 'example@test.com'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `employee`
+--
+
+INSERT INTO `employee` (`id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `city`, `hiring_date`, `position`, `department`, `id_code`, `email`) VALUES
+(1, 'First Name 1', 'Middle Name 1', 'Last Name 1', NULL, 'London', '2018-08-25 11:04:26', 0, 0, 0, 'example1@test.com'),
+(2, 'First Name 2', 'Middle Name 2', 'Last Name 2', NULL, 'Moscow', '2018-08-25 11:04:26', 0, 0, 0, 'example2@test.com');
 
 -- --------------------------------------------------------
 
@@ -113,6 +141,12 @@ CREATE TABLE `user` (
 --
 
 --
+-- Индексы таблицы `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `migration`
 --
 ALTER TABLE `migration`
@@ -144,6 +178,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
+--
+-- AUTO_INCREMENT для таблицы `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --

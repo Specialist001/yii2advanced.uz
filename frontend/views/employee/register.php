@@ -1,6 +1,8 @@
 <?php
 /* @var \frontend\models\Employee */
 
+use yii\widgets\ActiveForm;
+
 if ($model->hasErrors()) {
     echo '<pre>';
     print_r($model->getErrors());
@@ -10,7 +12,12 @@ if ($model->hasErrors()) {
 
 <h1>Welcome</h1>
 
-<form method="post">
+<?php $form = ActiveForm::begin(); ?>
+    <?php echo $form->field($model, 'firstName'); ?>
+
+<?php ActiveForm::end(); ?>
+
+<!--<form method="post">
     <p>First name:</p>
     <input type="text" name="firstName" />
     <br/>
@@ -29,4 +36,4 @@ if ($model->hasErrors()) {
 
     <input type="submit" />
 
-</form>
+</form>-->
