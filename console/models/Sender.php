@@ -15,7 +15,7 @@ class Sender
                 ->setTo($subscriber['email'])
                 ->setSubject('Theme')
                 ->send();
-            //var_dump($result);
+            //var_dump($result);die;
         }
     }
 }

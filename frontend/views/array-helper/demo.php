@@ -18,7 +18,7 @@ $array = [
 $listData = ArrayHelper::map($employees, 'first_name', 'hiring_date');
 
 echo '<pre>';
-print_r($listData);
+//print_r($listData);
 echo '<pre>';
 
 echo Html::dropDownList('city', [], $listData);

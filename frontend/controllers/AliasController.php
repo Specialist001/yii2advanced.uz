@@ -10,7 +10,7 @@ class AliasController extends Controller
     {
         for ($i = 2; $i<10; $i++) {
             $result = rmdir(Yii::getAlias('@files') . '/test'.$i);
-            var_dump($result);
+            //var_dump($result);
         }
     }
 }
