@@ -8,7 +8,7 @@ class DaoController extends Controller
     public function actionIndex()
     {
         $db = new \yii\db\Connection([
-            'dsn' => 'mysql:host=localhost:dbname=yii2advanced_db',
+            'dsn' => 'mysql:host=localhost;dbname=yii2advanced_db',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
