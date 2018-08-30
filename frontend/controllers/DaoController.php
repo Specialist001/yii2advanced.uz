@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use yii\web\Controller;
+use Yii;
 
 class DaoController extends Controller
 {
@@ -23,16 +24,14 @@ class DaoController extends Controller
 
         $arrayWithResults = $command->queryAll();
 
-        var_dump($arrayWithResults);
+        $array2 = Yii::$app->db->CreateCommand($sql)->queryAll();
+
+       //var_dump($arrayWithResults);
+        //echo '<hr>';
+        //var_dump($array2);
         //print_r($command);
 
         return $this->render('index');
         //die;
-    }
-
-    public function actionDemo()
-    {
-        echo 'bbb';
-        return 'aaaa';
     }
 }
