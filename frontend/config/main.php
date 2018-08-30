@@ -49,7 +49,4 @@ return [
         ],
     ],
     'params' => $params,
-    'aliases' => [
-        '@files' => 'S:\domains\yii2advanced.uz\frontend\web\files',
-    ],
 ];

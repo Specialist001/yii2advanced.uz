@@ -4,12 +4,6 @@
 //    echo Yii::$app->session->hasFlash('subscribeStatus');
 //}
 
-$this->title = 'Подпишитесь на новости!';
-$this->registerMetaTag([
-    'name' => 'description',
-    'content' => 'Description for page'
-]);
-
 if ($model->hasErrors()) {
     echo '<pre>';
     print_r($model->getErrors());

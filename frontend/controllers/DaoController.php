@@ -29,4 +29,10 @@ class DaoController extends Controller
         return $this->render('index');
         //die;
     }
+
+    public function actionDemo()
+    {
+        echo 'bbb';
+        return 'aaaa';
+    }
 }
