@@ -8,30 +8,12 @@ class DaoController extends Controller
 {
     public function actionIndex()
     {
-        $db = new \yii\db\Connection([
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced_db',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-        ]);
-
-        $sql = 'SELECT * FROM city;';
-
-        $command = new \yii\db\Command([
-            'db'  => $db,
-            'sql' => $sql,
-        ]);
-
-        $arrayWithResults = $command->queryAll();
-
-        $array2 = Yii::$app->db->CreateCommand($sql)->queryAll();
-
-       //var_dump($arrayWithResults);
-        //echo '<hr>';
-        //var_dump($array2);
-        //print_r($command);
+        $sql1 = 'INSERT INTO news (title, content, status) VALUES ("title 7", "content 7", 1);';
+        $result1 = Yii::$app->db->createCommand($sql1)->execute();
+        echo '<pre>';
+        var_dump($result1);
+        echo '<pre>';die;
 
         return $this->render('index');
-        //die;
     }
 }
