@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
     <?php echo $form->field($model, 'birthdate');  ?>
     <?php echo $form->field($model, 'rating');  ?>
 
-    <?php Html::submitButton('Save', [
+    <?php echo Html::submitButton('Save', [
         'class' => 'btn btn-primary',
     ]) ?>
 

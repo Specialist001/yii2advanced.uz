@@ -1,9 +1,22 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>author/update</h1>
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+?>
+
+<h1>Edit author #ID:<?php echo $model->id; ?></h1>
+<br/>
+
+<?php $form = ActiveForm::begin(); ?>
+
+<?php echo $form->field($model, 'first_name');  ?>
+<?php echo $form->field($model, 'last_name');  ?>
+<?php echo $form->field($model, 'birthdate');  ?>
+<?php echo $form->field($model, 'rating');  ?>
+
+<?php echo Html::submitButton('Save', [
+    'class' => 'btn btn-primary',
+]) ?>
+
+<?php ActiveForm::end(); ?>

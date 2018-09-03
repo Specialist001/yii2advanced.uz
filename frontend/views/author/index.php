@@ -1,9 +1,10 @@
 <?php
 /* @var $this yii\web\View */
+use yii\helpers\Url;
 ?>
 <h1>Authors</h1>
     <br/>
-    <a href="<?php echo \yii\helpers\Url::to(['author/create']); ?>" class="btn btn-primary" target="_blank">Create new author</a>
+    <a href="<?php echo \yii\helpers\Url::to(['author/create']); ?>" class="btn btn-primary">Create new author</a>
     <p>
     <table class="table table-condensed">
         <tr>
@@ -12,6 +13,8 @@
             <th>Last Name</th>
             <th>Birth Date</th>
             <th>Rating</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <?php foreach($authorsList as $author): ?>
             <tr>
@@ -20,6 +23,8 @@
                 <td><?php echo $author->last_name; ?></td>
                 <td><?php echo $author->birthdate; ?></td>
                 <td><?php echo $author->rating; ?></td>
+                <td><a href="<?php echo Url::to(['author/update', 'id' => $author->id]); ?>">Edit</a></td>
+                <td><a href="<?php echo Url::to(['author/delete', 'id' => $author->id]); ?>">Delete</a></td>
             </tr>
 
 <?php endforeach; ?>
