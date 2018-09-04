@@ -3,22 +3,19 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Book;
+use frontend\models\Publisher;
 use yii\web\Controller;
 
 class BookshopController extends Controller
 {
     public function actionIndex()
     {
-        $book = new Book();
-//        $book->name = 'Test Book';
-//        $book->isbn = '111111111';
-        $book->save();
+        $conditions = ['publisher_id' => 1];
+        $bookList = Book::find()->where($conditions)->orderBy('date_published')->limit(2)->all();
 
-        //echo '<pre>';
-        print_r($book->getErrors());
-        //echo '<pre>';
-
-        return $this->render('index');
+        return $this->render('index', [
+            'bookList' => $bookList,
+        ]);
     }
 
     public function actionCreate()
