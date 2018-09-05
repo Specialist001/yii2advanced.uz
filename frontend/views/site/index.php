@@ -10,7 +10,7 @@ $this->title = 'My Yii Application';
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
-        <h2><?php if (Yii::$app->user->identity) echo 'Hello, ' . Yii::$app->user->identity->username . '!'; ?></h2>
+        <h2><?php //if (Yii::$app->user->identity) echo 'Hello, ' . Yii::$app->user->identity->username . '!'; ?></h2>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
