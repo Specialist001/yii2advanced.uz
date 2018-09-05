@@ -21,7 +21,7 @@ class BookshopController extends Controller
     public function actionCreate()
     {
         $book = new Book();
-
+        $publishers = Publisher::getList();
         if ($book->load(Yii::$app->request->post()) && $book->save()) {
             Yii::$app->session->setFlash('success', 'Saved!');
 
@@ -30,6 +30,7 @@ class BookshopController extends Controller
 
         return $this->render('create', [
             'book' => $book,
+            'publishers' => $publishers,
         ]);
     }
 
