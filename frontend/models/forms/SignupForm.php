@@ -1,7 +1,8 @@
 <?php
+namespace frontend\models\forms;
 
 use Yii;
-use yii\web\User;
+use frontend\models\User;
 use yii\base\Model;
 
 class SignupForm extends Model
@@ -40,7 +41,9 @@ class SignupForm extends Model
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
 
-            return $this->save();
+            if ($user->save()) {
+                return $user;
+            }
         }
     }
 }
