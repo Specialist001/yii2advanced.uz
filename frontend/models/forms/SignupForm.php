@@ -4,6 +4,7 @@ namespace frontend\models\forms;
 use Yii;
 use yii\base\Model;
 use frontend\models\User;
+use common\components\EmailService;
 
 class SignupForm extends Model
 {
@@ -22,6 +23,7 @@ class SignupForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
+            [['email'], 'unique', 'targetClass' => User::className()],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -39,7 +41,17 @@ class SignupForm extends Model
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
 
-            return $user->save();
+            if ($user->save()) {
+
+                Yii::$app->emailService->notifyUser($user);
+                Yii::$app->emailService->notifyAdmins('User registered');
+                Yii::$app->smsService->notifyUser($user);
+                Yii::$app->smsService->notifyAdmins('User registered');
+                Yii::$app->smsService->notifyHeadquerters('User registered');
+                Yii::$app->postService->sendGift($user);
+
+                return $user;
+            }
         }
 
         return false;
