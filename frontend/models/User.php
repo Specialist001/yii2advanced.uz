@@ -20,6 +20,15 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface, UserNotificationInterface
 {
+    const USER_REGISTERED = 'user_registered';
+
+    public function init()
+    {
+        $this->on(self::USER_REGISTERED, [Yii::$app->emailService, 'notifyAdmins']);
+        $this->on(self::USER_REGISTERED, [Yii::$app->emailService, 'notifyUser']);
+        parent::init();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -27,22 +36,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface, UserNotifi
     {
         return 'user';
     }
-
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function rules()
-//    {
-//        return [
-//            [['username', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
-//            [['status', 'created_at', 'updated_at'], 'integer'],
-//            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
-//            [['auth_key'], 'string', 'max' => 32],
-//            [['username'], 'unique'],
-//            [['email'], 'unique'],
-//            [['password_reset_token'], 'unique'],
-//        ];
-//    }
 
     /**
      * {@inheritdoc}

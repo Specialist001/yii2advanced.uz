@@ -7,21 +7,21 @@ use common\components\UserNotificationInterface;
 
 class EmailService extends Component
 {
-    public function notifyUser(UserNotificationInterface $user)
+    public function notifyUser($event)
     {
         return Yii::$app->mailer->compose()
             ->setFrom('specialist001@inbox.ru')
-            ->setTo($user->email)
-            ->setSubject()
+            ->setTo($event->getEmail())
+            ->setSubject($event->getSubject())
             ->send();
     }
 
-    public function notifyAdmins($subject)
+    public function notifyAdmins($event)
     {
         return Yii::$app->mailer->compose()
             ->setFrom('specialist001@inbox.ru')
-            ->setTo('specialist001@inbox.ru')
-            ->setSubject()
+            ->setTo('darking-uz@yandex.com')
+            ->setSubject($event->getSubject())
             ->send();
     }
 }

@@ -9,5 +9,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'emailService' => [
+            'class' => 'common\components\EmailService',
+        ],
     ],
 ];

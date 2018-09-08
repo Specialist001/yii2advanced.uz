@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Model;
 use frontend\models\User;
 use common\components\EmailService;
+use frontend\models\events\UserRegisteredEvent;
 
 class SignupForm extends Model
 {
@@ -18,6 +19,7 @@ class SignupForm extends Model
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            [['username'], 'unique', 'targetClass' => User::className()],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -42,18 +44,14 @@ class SignupForm extends Model
             $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
 
             if ($user->save()) {
+                $event = new UserRegisteredEvent();
+                $event->user = $user;
+                $event->subject = 'New user registered';
 
-                Yii::$app->emailService->notifyUser($user);
-                Yii::$app->emailService->notifyAdmins('User registered');
-                Yii::$app->smsService->notifyUser($user);
-                Yii::$app->smsService->notifyAdmins('User registered');
-                Yii::$app->smsService->notifyHeadquerters('User registered');
-                Yii::$app->postService->sendGift($user);
+                $user->trigger(User::USER_REGISTERED, $event);
 
                 return $user;
             }
         }
-
-        return false;
     }
 }
