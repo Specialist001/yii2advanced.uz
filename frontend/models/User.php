@@ -2,7 +2,6 @@
 namespace frontend\models;
 
 use Yii;
-use common\components\UserNotificationInterface;
 use yii\web\IdentityInterface;
 
 /**
@@ -18,7 +17,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface, UserNotificationInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const USER_REGISTERED = 'user_registered';
 

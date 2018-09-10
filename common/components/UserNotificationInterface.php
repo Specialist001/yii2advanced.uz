@@ -5,5 +5,5 @@ interface UserNotificationInterface
 {
     public function getEmail();
     
-    //public function getSubject();
+    public function getSubject();
 }

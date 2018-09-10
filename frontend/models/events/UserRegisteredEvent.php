@@ -5,7 +5,7 @@ use yii\base\Event;
 use frontend\models\User;
 use common\components\UserNotificationInterface;
 
-class UserRegisteredEvent extends Event
+class UserRegisteredEvent extends Event implements UserNotificationInterface
 {
     /**
      * @var User

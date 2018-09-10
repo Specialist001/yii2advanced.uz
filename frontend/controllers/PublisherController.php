@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\controllers\behaviors\AccessBehavior;
 
 /**
  * PublisherController implements the CRUD actions for Publisher model.
@@ -26,6 +27,7 @@ class PublisherController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            AccessBehavior::className(),
         ];
     }
 
@@ -35,6 +37,8 @@ class PublisherController extends Controller
      */
     public function actionIndex()
     {
+        $this->checkAccess();
+
         $dataProvider = new ActiveDataProvider([
             'query' => Publisher::find(),
             'pagination' => [
@@ -60,6 +64,8 @@ class PublisherController extends Controller
      */
     public function actionView($id)
     {
+        $this->checkAccess();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -72,6 +78,8 @@ class PublisherController extends Controller
      */
     public function actionCreate()
     {
+        $this->checkAccess();
+
         $model = new Publisher();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -92,6 +100,8 @@ class PublisherController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->checkAccess();
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -112,6 +122,8 @@ class PublisherController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->checkAccess();
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -126,6 +138,8 @@ class PublisherController extends Controller
      */
     protected function findModel($id)
     {
+        $this->checkAccess();
+
         if (($model = Publisher::findOne($id)) !== null) {
             return $model;
         }
