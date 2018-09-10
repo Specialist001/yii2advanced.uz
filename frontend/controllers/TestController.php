@@ -1,17 +1,25 @@
 <?php
 namespace frontend\controllers;
 
+use Faker\Factory;
+
 use Yii;
 use yii\web\Controller;
-use frontend\models\User;
+use frontend\models\Test;
+use frontend\models\ExampleValidation;
 
 class TestController extends Controller
 {
-    public function actionIndex()
+    public function actionGenerate()
     {
-        $user = new User();
+        $faker = Factory::create();
 
-        echo 'test<br>';
+        echo $faker->name;
+        echo '<hr>';
+        echo $faker->address;
+        echo '<hr>';
+        echo $faker->text;
+        echo '<br>';
+        die('stop');
     }
-
 }
