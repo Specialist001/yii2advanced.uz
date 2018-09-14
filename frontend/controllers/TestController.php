@@ -16,6 +16,7 @@ class TestController extends Controller
             for ($i=0; $i<5; $i++) {
                 $news[] = [$faker->text(rand(30, 45)), $faker->text(rand(2000, 3000)), rand(0,1)];
             }
+
             Yii::$app->db->createCommand()->batchInsert('news', ['title', 'content', 'status'], $news)->execute();
             unset($news);
         }
